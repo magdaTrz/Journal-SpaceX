@@ -1,25 +1,47 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import SignUp from './components/SignUp/SignUp.js';
+import SignIn from './components/SignIn/SignIn.js';
+import React, { Component } from 'react';
+
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        whichPage:"SignIn"
+    }
+  }
+
+  render(){
+    if(this.state.whichPage==="SignUp") {
+      return <SignUp 
+        addedNewUser={ this.addedNewUser } 
+        changePage={ this.changePage }></SignUp>;
+    }
+    
+    if ( this.state.whichPage === "SignIn" ) {
+      return <SignIn 
+        addedNewUser = {this.state.addedNewUser}
+        loginUser = {this.loginUser}
+        changePage = {this.changePage} > </SignIn>;
+    }
+
+  }
+  changePage = (page)=> {
+    this.setState({whichPage:page})
+  }
+  setGameIdForDetailsId = (gameId)=> {
+    this.setState({gameForDetailsId:gameId})
+  }
+  addedNewUser = ()=> {
+    this.setState({addedNewUser:true})
+  }
+
+  loginUser = (loggedInUser)=> {
+    console.log("Logowanie użytkownika: ", loggedInUser);
+    this.setState({currentUser:loggedInUser})
+  };
 }
 
 export default App;
