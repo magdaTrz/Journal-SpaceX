@@ -19,12 +19,12 @@ function SignUp(props) {
       const newUser = { username: username, password: password};
       if(username===""){
         setError("No username provided");
-        console.log("Pusty username");
+        error.log("No username provided");
         return;
       }
       if(password===""){
         setError("No password provided");
-        console.log("Pusty hasło");
+        error.log("No password provided");
         return;
       }
       for(let i=0;i<users.length;i++){
@@ -32,7 +32,7 @@ function SignUp(props) {
         console.log(users[i].username)
         if(newUser.username===users[i].username){
           setError("A user with such a username already exists.");
-          console.log("Istnieje już taki użytkownik:", users[i]);
+          console.log("Such login already exists:", users[i]);
           return;
         } 
       }
@@ -41,16 +41,14 @@ function SignUp(props) {
       }
 
       if(newUser!=null){
-        console.log("Dodawanie użytkownika do bazy: ", newUser);
+        console.log("Added user: ", newUser);
         let users=null;
         fetch("http://localhost:8000/users")
         .then(res=>{return res.json()})
         .then((data)=>{
           users=data;
-          console.log("Dane z serwera: ",data);
           let id=-1;
-          for(let i=0;i<users.length;i++)
-          {
+          for(let i=0;i<users.length;i++){
             if(id<users[i].id){
               id=users[i].id;
             }}
@@ -64,7 +62,6 @@ function SignUp(props) {
             body: JSON.stringify(newUserWithId)
           })
           .then(()=>{
-            console.log("Dodano użytkownika do bazy");
             props.changePage("SignIn");
             props.addedNewUser();
           });
@@ -75,7 +72,7 @@ function SignUp(props) {
 
     return(
         <div>
-        <p>Register</p>
+        <p>Register Page</p>
         <div>
             <div>
               <p htmlFor="username">username</p>
@@ -104,7 +101,6 @@ function SignUp(props) {
               Sign Up
             </button>}
             <p className="hiddenError">{error}</p>
-            <br></br>
             <button onClick={ () => props.changePage("SignIn")}> Go to the login page </button>
           </div>
       </div>

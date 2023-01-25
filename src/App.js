@@ -1,7 +1,9 @@
 import './App.css';
 
+import Navbar from './components/Navbar/Navbar';
 import SignUp from './components/SignUp/SignUp.js';
 import SignIn from './components/SignIn/SignIn.js';
+
 import React, { Component } from 'react';
 
 
@@ -15,17 +17,27 @@ class App extends Component {
 
   render(){
     if(this.state.whichPage==="SignUp") {
-      return <SignUp 
-        addedNewUser={ this.addedNewUser } 
-        changePage={ this.changePage }></SignUp>;
-    }
+      return (
+      <>
+          <Navbar />
+          <SignUp 
+            addedNewUser={ this.addedNewUser } 
+            changePage={ this.changePage }>
+          </SignUp>
+      </>
+    )}
     
     if ( this.state.whichPage === "SignIn" ) {
-      return <SignIn 
+      return (
+      <>
+      <Navbar />
+      <SignIn 
         addedNewUser = {this.state.addedNewUser}
         loginUser = {this.loginUser}
-        changePage = {this.changePage} > </SignIn>;
-    }
+        changePage = {this.changePage} > 
+      </SignIn>;
+      </>
+    )}
 
   }
   changePage = (page)=> {

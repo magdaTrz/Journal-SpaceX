@@ -5,7 +5,7 @@ function SignIn(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [users, setUsers] = useState(null);
-  const [error, setError] = useState(props.addedNewUser ? "A new user has been created. Log in." : "");
+  const [error, setError] = useState(props.addedNewUser ? "A new user has been created. SignIn." : "");
   useEffect(() => {
     fetch("http://localhost:8000/users")
       .then(res => {
@@ -18,36 +18,37 @@ function SignIn(props) {
   }, []);
 
   const submitForm = () => {
-
     const newUser = {
       id: 0,
       username: username,
       password: password
     };
+
     if (username === "") {
       setError("No username provided");
-      console.log("Pusty username");
+      error.log("No username provided");
       return;
     }
+
     if (password === "") {
       setError("No password provided");
-      console.log("Pusty hasło");
+      error.log("No password provided");
       return;
     }
+
     for (let i = 0; i < users.length; i++) {
       console.log(newUser.username)
       console.log(users[i].username)
       if (newUser.username === users[i].username && newUser.password === users[i].password) {
-        console.log("Istnieje taki użytkownik:", users[i]);
+        console.log("Succes: ", users[i]);
         newUser.id = users[i].id
         props.loginUser(newUser);
-        console.log("Zalogowano");
         // props.changePage("Games");
         return;
       }
     }
-    console.log("Nie istnieje taki użytkownik");
-    setError("A user with such a username and password combination does not exist.");
+    error.log("Error");
+    setError("Invalid login or password.");
   };
 
   return ( 
