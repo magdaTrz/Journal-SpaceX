@@ -43,11 +43,15 @@ class App extends Component {
     )}
 
     if (this.state.whichPage === "Rockets") {
-      return <Rockets 
-        currentUser = {this.state.currentUser}
-        changePage = {this.changePage}
-        setGameIdForDetailsId = {this.setGameIdForDetailsId} > 
-        </Rockets>;
+      return (
+        <>
+        <Navbar />
+        <Rockets 
+          currentUser = {this.state.currentUser}
+          changePage = {this.changePage}
+          setGameIdForDetailsId = {this.setGameIdForDetailsId} > 
+        </Rockets>
+        </>);
     }
 
   }
@@ -62,7 +66,7 @@ class App extends Component {
   }
 
   loginUser = (loggedInUser)=> {
-    console.log("Logowanie użytkownika: ", loggedInUser);
+    console.log("currentUser: ", loggedInUser);
     this.setState({currentUser:loggedInUser})
   };
 }

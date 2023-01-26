@@ -1,0 +1,10 @@
+.rocket-section{
+    align-items: center;
+}
+
+.rocket-card {
+ margin: 6%;   
+}
+.rocket-card img{
+    width: 100%;
+}

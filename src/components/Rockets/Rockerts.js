@@ -60,11 +60,21 @@ function Rockets(props) {
             onChange={(e) => sortRockets("ascending")}
           /></p>
         </div>
-        <div>
-        <div >
-        {rockets &&  rockets.map((rocket) => {return (<div>{rocket.name}</div>)})}
+
+        <div className="rocket-section">
+        {rockets &&  rockets.map((rocket) => {return (
+            <div className="rocket-card">
+              <img src={rocket.flickr_images}></img>
+              <h1>{rocket.name}</h1>
+              Cost per launch: {rocket.cost_per_launch} <br/>
+              First flight: {rocket.first_flight} <br/>
+              Company: {rocket.company} <br/>
+              <button> Read more </button>
+            </div>
+            )})
+        }
         </div>
-        </div>
+
     </>
 )}
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Navbar() {
+function Navbar(props) {
   const [active, setActive] = useState("SignIn");
 
   function handleClick(e) {
@@ -13,7 +13,7 @@ function Navbar() {
     <h1>Navbar</h1>
       <ul>
         <li>
-          <button name="Launches" onClick={handleClick}> Launches </button>
+          <button name="Launches" onClick={ () => props.changePage("Launches")}> Launches </button>
         </li>
          <li>
           <button name="Rockets" onClick={handleClick}> Rockets </button>

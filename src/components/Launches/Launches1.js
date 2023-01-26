@@ -18,6 +18,7 @@ function Launches() {
 
   return (
     <div className="launches-container">
+    <h1>Launches</h1>
       {launches.map(launch => (
         <LaunchCard key={launch.flight_number} launch={launch} />
       ))}
