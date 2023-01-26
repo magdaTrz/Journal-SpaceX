@@ -26,13 +26,13 @@ function SignIn(props) {
 
     if (username === "") {
       setError("No username provided");
-      error.log("No username provided");
+      console.log("No username provided");
       return;
     }
 
     if (password === "") {
       setError("No password provided");
-      error.log("No password provided");
+      console.log("No password provided");
       return;
     }
 
@@ -43,11 +43,11 @@ function SignIn(props) {
         console.log("Succes: ", users[i]);
         newUser.id = users[i].id
         props.loginUser(newUser);
-        // props.changePage("Games");
+        props.changePage("Rockets");
         return;
       }
     }
-    error.log("Error");
+    console.log("Error");
     setError("Invalid login or password.");
   };
 

@@ -1,8 +1,11 @@
 import './App.css';
 
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar/Navbar.js';
 import SignUp from './components/SignUp/SignUp.js';
 import SignIn from './components/SignIn/SignIn.js';
+import Rockets from './components/Rockets/Rockerts.js';
+
+import Launches from './components/Launches/Launches1';
 
 import React, { Component } from 'react';
 
@@ -38,6 +41,14 @@ class App extends Component {
       </SignIn>;
       </>
     )}
+
+    if (this.state.whichPage === "Rockets") {
+      return <Rockets 
+        currentUser = {this.state.currentUser}
+        changePage = {this.changePage}
+        setGameIdForDetailsId = {this.setGameIdForDetailsId} > 
+        </Rockets>;
+    }
 
   }
   changePage = (page)=> {

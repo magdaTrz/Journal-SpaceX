@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin"
+    },
+    {
+      "id": 2,
+      "username": "a",
+      "password": "a"
+    }
+  ],
+  "games": [
+    {
+      "id": 540,
+      "userId": 3,
+      "title": "Overwatch 2"
+    },
+    {
+      "id": 192,
+      "userId": 3,
+      "title": "WAKFU"
+    }
+  ]
+}
