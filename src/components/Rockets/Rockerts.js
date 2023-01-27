@@ -27,18 +27,30 @@ function Rockets(props) {
 
     const sortRockets = (sortingType) => {
         console.log("Sorting Rockets by: ", sortingType);
+        //fetchRockets()
         let sortedRockets = rockets;
         if (sortingType === "ascending") {
           sortedRockets = [...sortedRockets].sort((a, b) =>
-            a.title > b.title ? 1 : -1,
+            a.name > b.name ? 1 : -1,
           );
         } else {
           sortedRockets = [...sortedRockets].sort((a, b) =>
-            a.title < b.title ? 1 : -1,
+            a.name < b.name ? 1 : -1,
           );
         }
         setRockets(sortedRockets);
     }
+
+    const filterRockets = (filteredName) => {
+      console.log("Filtering rockets by name: ",filteredName);
+      console.log(rockets)
+      let filteredRockets = rockets;
+
+      filteredRockets = [...filteredRockets].filter(rocket => rocket.name.toLowerCase().includes(filteredName.toLowerCase()));
+          console.log(filteredRockets)
+          console.log(rockets)
+      setRockets(filteredRockets);
+  }
 
     return (
     <>
@@ -61,6 +73,25 @@ function Rockets(props) {
             onChange={(e) => sortRockets("ascending")}
           /></p>
         </div>
+
+        <div>
+          <p htmlFor="username">Filter by name</p>
+          <input
+            type="username"
+            name="username"
+            id="username"
+            autoComplete="off"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          />
+        </div>
+        <button onClick={ () => filterRockets(filter)}>
+        Filter
+        </button>
+        <button onClick={ () => fetchRockets()}>
+          Pokaz wszystkie
+        </button>
+        <div></div>
 
         <div className="rocket-section">
         {rockets &&  rockets.map((rocket) => {return (
