@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 
 import rocketsStyle from "./rocketsStyle.css"
 
@@ -69,7 +70,7 @@ function Rockets(props) {
               Cost per launch: {rocket.cost_per_launch} <br/>
               First flight: {rocket.first_flight} <br/>
               Company: {rocket.company} <br/>
-              <button> Read more </button>
+              <button onClick={() => props.changePage("LunchCard")}> Read more </button>
             </div>
             )})
         }

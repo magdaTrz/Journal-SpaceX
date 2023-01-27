@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function Navbar(props) {
   const [active, setActive] = useState("SignIn");
@@ -15,12 +16,12 @@ function Navbar(props) {
         <li>
           <button name="Launches" onClick={ () => props.changePage("Launches")}> Launches </button>
         </li>
-         <li>
-          <button name="Rockets" onClick={handleClick}> Rockets </button>
+        <li>
+          <button name="Rockets" onClick={ () => props.changePage("Rockets")}> Rockets </button>
         </li>
-        {/*<li>
-          <button name="contact" onClick={handleClick}>Contact</button>
-        </li> */}
+        <li>
+          <button name="Watch List" onClick={ () => props.changePage("WatchList")}>Watch List</button>
+        </li>
       </ul>
     </nav>
   );

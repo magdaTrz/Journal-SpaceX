@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import LaunchCard from './LaunchCard';
+import axios from 'axios'; //i tu bez axios 
+import LaunchCard from '../LaunchesCard/LaunchCard';
 
+
+//testowe raczej do zmiany
 function Launches() {
   const [launches, setLaunches] = useState([]);
 

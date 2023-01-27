@@ -1,8 +1,9 @@
 import React from 'react';
 
-function LaunchCard({ launch }) {
+function LaunchCard({ launch }) { //to tez trzeba zrobić tak jak ten gosciu
   return (
     <div className="launch-card">
+      <h1>Lunch card</h1>
       <img src={launch.links.mission_patch} alt={launch.mission_name} />
       <div className="launch-info">
         <h3>{launch.mission_name}</h3>
