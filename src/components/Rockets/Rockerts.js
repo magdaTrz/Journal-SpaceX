@@ -8,7 +8,7 @@ function Rockets(props) {
     const [filter, setFilter] = useState("");
     const [sort, setSort] = useState("");
     const [rockets, setRockets] = useState(null);
-    const [gameName, setGameName] = useState("");
+    const [inFavourites,setInFavourites] = useState(false);
 
     async function fetchRockets() {
         try {
@@ -50,6 +50,33 @@ function Rockets(props) {
           console.log(filteredRockets)
           console.log(rockets)
       setRockets(filteredRockets);
+  }
+
+  const addToWatchList = (rocketId, rocketName, flickr_images) =>{
+    console.log("Adding to watchlist");
+    let person = prompt("Why are you interested in this rocket:", "");
+    if (person == null || person == "") {
+      console.log("User cancelled the prompt.");
+    } else {
+      let id=rocketId;
+    let title=rocketName;
+    let img = flickr_images
+    console.log("Użytkownik: "+props.currentUser.id);
+
+    let newRocket={"id":id, "userId":props.currentUser.id, "name": title, "flickr_images": img, "reason": person};
+
+    fetch("http://localhost:8000/rockets",{
+          method: "POST",
+          headers: {"Content-type":"application/json"},
+          body: JSON.stringify(newRocket)
+        })
+        .then(()=>{
+          console.log("Dodano rakietę do obserwowanych");
+          setInFavourites(true);
+          setError("Added a rocket to watchlist");
+        });
+    }
+    
   }
 
     return (
@@ -95,13 +122,14 @@ function Rockets(props) {
 
         <div className="rocket-section">
         {rockets &&  rockets.map((rocket) => {return (
-            <div className="rocket-card">
+            <div key={rocket.id} className="rocket-card">
               <img src={rocket.flickr_images}></img>
               <h1>{rocket.name}</h1>
               Cost per launch: {rocket.cost_per_launch} <br/>
               First flight: {rocket.first_flight} <br/>
               Company: {rocket.company} <br/>
               <button onClick={() => props.changePage("LunchCard")}> Read more </button>
+              <button onClick={() => addToWatchList(rocket.id, rocket.name, rocket.flickr_images)}> Add to WatchList </button>
             </div>
             )})
         }

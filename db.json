@@ -11,16 +11,16 @@
       "password": "a"
     }
   ],
-  "games": [
+  "rockets": [
     {
-      "id": 540,
-      "userId": 3,
-      "title": "Overwatch 2"
-    },
-    {
-      "id": 192,
-      "userId": 3,
-      "title": "WAKFU"
+      "userId": 1,
+      "name": "Falcon 1",
+      "flickr_images": [
+        "https://imgur.com/DaCfMsj.jpg",
+        "https://imgur.com/azYafd8.jpg"
+      ],
+      "reason": "It goes boom and shines bright",
+      "id": "5e9d0d95eda69955f709d1eb"
     }
   ]
 }
