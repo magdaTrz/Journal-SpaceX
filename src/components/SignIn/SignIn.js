@@ -58,9 +58,15 @@ function SignIn(props) {
 
   return (
     <div>
-      <p> Login Page </p>
-      <div>
-        <div>
+      <h1>Space X</h1>
+      <p className="heading">Register page</p>
+      <section className="wrapper">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+      </section>
+      
+      <div className="pass">
           <p htmlFor="username"> username </p>
           <input
             type="username"
@@ -73,7 +79,7 @@ function SignIn(props) {
           />
         </div>
 
-        <div>
+        <div className="pass">
           <p htmlFor="password"> Password </p>
           <input
             type="password"
@@ -95,7 +101,7 @@ function SignIn(props) {
           Go to the Registration page
         </button>
       </div>
-    </div>
+    
   );
 }
 

@@ -79,9 +79,14 @@ function SignUp(props) {
 
   return (
     <div>
-      <p>Register Page</p>
+      <h1>Register page</h1>
+      <section className="wrapper">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+      </section>
       <div>
-        <div>
+        <div className="pass">
           <p htmlFor="username">username</p>
           <input
             type="username"
@@ -93,7 +98,7 @@ function SignUp(props) {
           />
         </div>
 
-        <div>
+        <div className="pass">
           <p htmlFor="password"> Password </p>
           <input
             type="password"
