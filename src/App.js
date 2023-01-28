@@ -5,7 +5,7 @@ import SignUp from "./components/SignUp/SignUp.js";
 import SignIn from "./components/SignIn/SignIn.js";
 
 import Rockets from "./components/Rockets/Rockerts.js";
-import RocketsCard from "./components/RocketsCard/RocketsCard";
+import RocketsCard from "./components/RocketsCard/RocketsCard.js";
 
 import Launches from "./components/Launches/Launches.js";
 import LaunchesCard from "./components/LaunchesCard/LaunchCard.js";
@@ -67,19 +67,7 @@ class App extends Component {
           <RocketsCard
             currentUser={this.state.currentUser}
             changePage={this.changePage}
-            setGameIdForDetailsId={this.setGameIdForDetailsId}
-          ></RocketsCard>
-        </>
-      );
-    }
-
-    if (this.state.whichPage === "RocketsCard") {
-      return (
-        <>
-          <Navbar changePage={this.changePage} />
-          <RocketsCard
-            currentUser={this.state.currentUser}
-            changePage={this.changePage}
+            gameForDetailsId={this.state.gameForDetailsId}
             setGameIdForDetailsId={this.setGameIdForDetailsId}
           ></RocketsCard>
         </>
@@ -93,6 +81,7 @@ class App extends Component {
           <Launches
             currentUser={this.state.currentUser}
             changePage={this.changePage}
+            gameForDetailsId={this.state.gameForDetailsId}
             setGameIdForDetailsId={this.setGameIdForDetailsId}
           ></Launches>
         </>
