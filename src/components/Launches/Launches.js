@@ -79,7 +79,7 @@ function Launches(props) {
         reason: person,
       };
 
-      fetch("http://localhost:8000/launches", {
+      fetch("http://localhost:8000/rockets", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(newLaunches),
@@ -146,7 +146,11 @@ function Launches(props) {
                 </button>
                 <button
                   onClick={() =>
-                    addToWatchList(launch.id, launch.name, launch.flickr_images)
+                    addToWatchList(
+                      launch.id,
+                      launch.name,
+                      launch.links.patch.small
+                    )
                   }
                 >
                   Add to WatchList
