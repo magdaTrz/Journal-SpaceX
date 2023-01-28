@@ -1,27 +1,29 @@
-import React, { useEffect,  useState } from 'react';
-import styles from './signInStyle.css';
+import React, { useEffect, useState } from "react";
+import styles from "./signInStyle.css";
 
 function SignIn(props) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [users, setUsers] = useState(null);
-  const [error, setError] = useState(props.addedNewUser ? "A new user has been created. SignIn." : "");
+  const [error, setError] = useState(
+    props.addedNewUser ? "A new user has been created. SignIn." : ""
+  );
   useEffect(() => {
     fetch("http://localhost:8000/users")
-      .then(res => {
-        return res.json()
+      .then((res) => {
+        return res.json();
       })
       .then((data) => {
         setUsers(data);
         console.log(data);
-      })
+      });
   }, []);
 
   const submitForm = () => {
     const newUser = {
       id: 0,
       username: username,
-      password: password
+      password: password,
     };
 
     if (username === "") {
@@ -37,11 +39,14 @@ function SignIn(props) {
     }
 
     for (let i = 0; i < users.length; i++) {
-      console.log(newUser.username)
-      console.log(users[i].username)
-      if (newUser.username === users[i].username && newUser.password === users[i].password) {
+      console.log(newUser.username);
+      console.log(users[i].username);
+      if (
+        newUser.username === users[i].username &&
+        newUser.password === users[i].password
+      ) {
         console.log("Succes: ", users[i]);
-        newUser.id = users[i].id
+        newUser.id = users[i].id;
         props.loginUser(newUser);
         props.changePage("Rockets");
         return;
@@ -51,45 +56,48 @@ function SignIn(props) {
     setError("Invalid login or password.");
   };
 
-  return ( 
+  return (
     <div>
-        <p> Login Page </p> 
-            <div>
-                <div>
-                    <p htmlFor = "username" > username </p> 
-                    <input 
-                        type = "username"
-                        name = "username"
-                        id = "username"
-                        autoComplete = "off"
-                        value = {username}
-                        onChange = {(e) => setUsername(e.target.value)}
-                        className = {styles.Button}/> 
-                </div>
+      <p> Login Page </p>
+      <div>
+        <div>
+          <p htmlFor="username"> username </p>
+          <input
+            type="username"
+            name="username"
+            id="username"
+            autoComplete="off"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className={styles.Button}
+          />
+        </div>
 
-            <div >
-                <p htmlFor = "password" > Password </p> 
-                <input 
-                    type = "password"
-                    name = "password"
-                    id = "password"
-                    autoComplete = "off"
-                    value = {password}
-                    onChange = {(e) => setPassword(e.target.value)}
-                    className = {styles.Button} /> 
-            </div> 
-            {users && 
-            < button 
-                className = {styles.Button}
-                onClick = {submitForm} >
-                Sign In 
-            </button>} 
-            <p className = "hiddenError" > {error} </p> 
-            <button onClick = {() => props.changePage("SignUp")}> Go to the Registration page </button> 
-        </div> 
+        <div>
+          <p htmlFor="password"> Password </p>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            autoComplete="off"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.Button}
+          />
+        </div>
+        {users && (
+          <button className={styles.Button} onClick={submitForm}>
+            Sign In
+          </button>
+        )}
+        <p className="hiddenError"> {error} </p>
+        <button onClick={() => props.changePage("SignUp")}>
+          Go to the Registration page
+        </button>
+      </div>
     </div>
-    );
-  };
+  );
+}
 
 SignIn.propTypes = {};
 SignIn.defaultProps = {};

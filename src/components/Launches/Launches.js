@@ -142,16 +142,14 @@ function Launches(props) {
                 Details: {launch.details} <br />
                 Is it upcoming: {launch.upcoming} <br />
                 <button onClick={() => props.changePage("LunchCard")}>
-                  {" "}
-                  Read more{" "}
+                  Read more
                 </button>
                 <button
                   onClick={() =>
                     addToWatchList(launch.id, launch.name, launch.flickr_images)
                   }
                 >
-                  {" "}
-                  Add to WatchList{" "}
+                  Add to WatchList
                 </button>
               </div>
             );

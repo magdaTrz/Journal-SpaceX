@@ -1,10 +1,5 @@
 function RocketsCard(props) {
-
-    return(
-        <>
-
-        </>
-    )
+  return <></>;
 }
 
-export default RocketsCard
+export default RocketsCard;
