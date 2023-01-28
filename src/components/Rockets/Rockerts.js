@@ -87,8 +87,8 @@ function Rockets(props) {
 
   return (
     <>
-      <h1>Rockets</h1>
-      <div>
+      <h2>Rockets</h2>
+      <div className="info">
         <p>Sort by:</p>
         <p htmlFor="descending">
           descending
@@ -111,7 +111,7 @@ function Rockets(props) {
         </p>
       </div>
 
-      <div>
+      <div className="info">
         <p htmlFor="username">Filter by name</p>
         <input
           type="username"

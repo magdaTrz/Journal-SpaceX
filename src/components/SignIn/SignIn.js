@@ -59,13 +59,7 @@ function SignIn(props) {
   return (
     <div>
       <h1>Space X</h1>
-      <p className="heading">Register page</p>
-      <section className="wrapper">
-        <div id="stars"></div>
-        <div id="stars2"></div>
-        <div id="stars3"></div>
-      </section>
-      
+   
       <div className="pass">
           <p htmlFor="username"> username </p>
           <input

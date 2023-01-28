@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import launchesStyle from "./launchesStyle.css";
+import style from "./launchesStyle.css";
 
 function Launches(props) {
   const [error, setError] = useState("");
@@ -93,8 +93,8 @@ function Launches(props) {
 
   return (
     <>
-      <h1>Launches</h1>
-      <div>
+      <h1 className="heading">Launches</h1>
+      <div className="info">
         <p>Sort by:</p>
         <p htmlFor="descending">
           descending
@@ -117,7 +117,7 @@ function Launches(props) {
         </p>
       </div>
 
-      <div>
+      <div className="user">
         <p htmlFor="username">Filter by name</p>
         <input
           type="username"
@@ -132,7 +132,7 @@ function Launches(props) {
       <button onClick={() => fetchLaunches()}>Pokaz wszystkie</button>
       <div></div>
 
-      <div className="rocket-section">
+      <div className="rocket-section1">
         {launches &&
           launches.map((launch) => {
             return (
