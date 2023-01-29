@@ -78,12 +78,12 @@ function SignUp(props) {
   };
 
   return (
-    <div>
+    <div className="signIn-div">
       <div className="typewriter">
         <h1>Journal Space-X</h1>
       </div>
-
-      <div>
+      <div className="signIn">
+        <h2>Sign Up</h2>
         <div className="pass">
           <p htmlFor="username">username</p>
           <input
@@ -109,10 +109,8 @@ function SignUp(props) {
         </div>
         {users && <button onClick={submitForm}>Sign Up</button>}
         <p className="hiddenError">{error}</p>
-        <button onClick={() => props.changePage("SignIn")}>
-          {" "}
-          Go to the login page{" "}
-        </button>
+        <p className="acc"> You have account?</p>
+        <button onClick={() => props.changePage("SignIn")}>Sign In</button>
       </div>
     </div>
   );

@@ -57,43 +57,47 @@ function SignIn(props) {
   };
 
   return (
-    <div className="style.signIn">
+    <div className="signIn-div">
       <div className="typewriter">
         <h1>Journal Space-X</h1>
       </div>
-      <div className="pass">
-        <p htmlFor="username"> username </p>
-        <input
-          type="username"
-          name="username"
-          id="username"
-          autoComplete="off"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className={styles.Button}
-        />
-      </div>
-      <div className="pass">
-        <p htmlFor="password"> Password </p>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          autoComplete="off"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={styles.Button}
-        />
-      </div>
-      {users && (
-        <button className={styles.Button} onClick={submitForm}>
-          Sign In
+      <div className="signIn">
+        <h2>Sign In</h2>
+        <div className="pass">
+          <p htmlFor="username"> Username </p>
+          <input
+            type="username"
+            name="username"
+            id="username"
+            autoComplete="off"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className={styles.Button}
+          />
+        </div>
+        <div className="pass">
+          <p htmlFor="password"> Password </p>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            autoComplete="off"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.Button}
+          />
+        </div>
+        {users && <button onClick={submitForm}>Sign In</button>}
+        <p className="hiddenError"> {error} </p>
+        <p className="acc"> You don't have account?</p>
+        <button
+          onClick={() => props.changePage("SignUp")}
+          className="button-78"
+          role="button"
+        >
+          Sign Up
         </button>
-      )}
-      <p className="hiddenError"> {error} </p>
-      <button onClick={() => props.changePage("SignUp")}>
-        Go to the Registration page
-      </button>
+      </div>
     </div>
   );
 }

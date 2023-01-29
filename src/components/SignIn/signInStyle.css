@@ -1,12 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
 
-.pass {
-  text-align: center;
-  padding: 10px;
-  color: aliceblue;
-  font-family: "montserrat", sans-serif;
-  font-weight: 30;
-  font-size: 20px;
+.signIn {
+  font-family: "Space Grotesk", sans-serif;
+  border: #fff 3px solid;
+  background-color: rgba(78, 98, 165, 0.13);
+  width: max-content;
+  padding: 1% 5%;
+  align-items: center;
+  border-radius: 6px;
+  margin: auto;
+}
+.signIn-div {
+  align-items: center;
+  align-content: center;
+}
+.pass p {
+  margin-bottom: 3px;
+}
+.pass:nth-child(3) {
+  padding-bottom: 30px;
+}
+.hiddenError {
+  width: max-content;
+  font-family: "Space Grotesk", sans-serif;
+  color: rgb(145, 36, 36);
+}
+.acc {
+  color: gray;
+  padding: 0;
+  margin: 0;
+  width: max-content;
+  align-self: center;
+  font-family: "Space Grotesk", sans-serif;
+}
+.typewriter {
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 .typewriter h1 {
@@ -28,7 +58,7 @@
     width: 0;
   }
   to {
-    width: 50%;
+    width: 100%;
   }
 }
 
