@@ -30,7 +30,7 @@ function Rockets(props) {
     setIsOpenEdit(true);
   }
 
-  const handleReasonChange = ev => setReason(ev.target.value);
+  const handleReasonChange = (ev) => setReason(ev.target.value);
 
   function closeModalEdit() {
     setIsOpenEdit(false);
@@ -55,20 +55,22 @@ function Rockets(props) {
     console.log("SETROCKETS DEFAULT FAVOURITES");
     try {
       const response = await fetch("http://localhost:8000/rockets/", {
-        method: "GET"
+        method: "GET",
       });
       const data = await response.json();
-        let filteredRockets = data;
-        filteredRockets = [...filteredRockets].filter((rocket) => rocket.userId == props.currentUser.id);
-        setWatchlist(filteredRockets);
-        return filteredRockets
+      let filteredRockets = data;
+      filteredRockets = [...filteredRockets].filter(
+        (rocket) => rocket.userId == props.currentUser.id
+      );
+      setWatchlist(filteredRockets);
+      return filteredRockets;
     } catch (error) {
       console.error(error);
     }
-  };
+  }
 
-  if(watchlist === null) {
-    getWatchlist()
+  if (watchlist === null) {
+    getWatchlist();
   }
 
   const sortRockets = (sortingType) => {
@@ -103,34 +105,34 @@ function Rockets(props) {
   const addToWatchList = (rocketId, reasonFor) => {
     console.log("Adding to watchlist");
     let rocket1 = rockets.find((rocket) => rocket.id == rocketId);
-    console.log(rocket1)
-  
-      let reasonForAdding = [reasonFor];
-      let id = rocketId;
-      let title = rocket1.name
-      let img = rocket1.flickr_images;
-      console.log("Użytkownik: " + props.currentUser.id);
+    console.log(rocket1);
 
-      let newRocket = {
-        id: id,
-        userId: props.currentUser.id,
-        name: title,
-        flickr_images: img,
-        reason: reasonForAdding,
-      };
+    let reasonForAdding = [reasonFor];
+    let id = rocketId;
+    let title = rocket1.name;
+    let img = rocket1.flickr_images;
+    console.log("Użytkownik: " + props.currentUser.id);
 
-      fetch("http://localhost:8000/rockets", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify(newRocket),
-      }).then(() => {
-        console.log("Dodano rakietę do obserwowanych");
-        setInFavourites(true);
-        setError("Added a rocket to watchlist");
-        getWatchlist();
-        fetchRockets();
-        closeModalEdit();
-      });
+    let newRocket = {
+      id: id,
+      userId: props.currentUser.id,
+      name: title,
+      flickr_images: img,
+      reason: reasonForAdding,
+    };
+
+    fetch("http://localhost:8000/rockets", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(newRocket),
+    }).then(() => {
+      console.log("Dodano rakietę do obserwowanych");
+      setInFavourites(true);
+      setError("Added a rocket to watchlist");
+      getWatchlist();
+      fetchRockets();
+      closeModalEdit();
+    });
   };
 
   const deleteFromWatchList = (rocketId) => {
@@ -154,12 +156,10 @@ function Rockets(props) {
   };
 
   const isWatchlist = (rocketId) => {
-      let rocket1 = watchlist.find((rocket) => rocket.id === rocketId);
-      console.log(rocket1)
-      return rocket1;
+    let rocket1 = watchlist.find((rocket) => rocket.id === rocketId);
+    console.log(rocket1);
+    return rocket1;
   };
-
-
 
   return (
     <>
@@ -207,27 +207,42 @@ function Rockets(props) {
           rockets.map((rocket) => {
             return (
               <div key={rocket.id} className="rocket-card">
-                <img src={rocket.flickr_images}></img>
+                <div className="rocket-img">
+                  <img src={rocket.flickr_images}></img>
+                </div>
                 <h2>{rocket.name}</h2>
                 <p>Cost per launch: {rocket.cost_per_launch} </p>
                 <p>First flight: {rocket.first_flight} </p>
                 <p>Company: {rocket.company} </p>
-                
+
                 {watchlist && (
                   <div>
                     <button
-                  onClick={() => {
-                    props.setGameIdForDetailsId(rocket.id);
-                    props.changePage("RocketsCard");
-                  }}
-                >
-                  Read more
-                </button>
-                  {!isWatchlist(rocket.id) && <button onClick={ () => openModalEdit(rocket.id)}>Add to WatchList</button>}
-                  {isWatchlist(rocket.id) && <button onClick={ () => openDeleteModal(rocket.id)}>Delete from WatchList</button>}
+                      onClick={() => {
+                        props.setGameIdForDetailsId(rocket.id);
+                        props.changePage("RocketsCard");
+                      }}
+                    >
+                      Read more
+                    </button>
+                    {!isWatchlist(rocket.id) && (
+                      <button
+                        className="add"
+                        onClick={() => openModalEdit(rocket.id)}
+                      >
+                        Add to WatchList
+                      </button>
+                    )}
+                    {isWatchlist(rocket.id) && (
+                      <button
+                        className="del"
+                        onClick={() => openDeleteModal(rocket.id)}
+                      >
+                        Delete from WatchList
+                      </button>
+                    )}
                   </div>
                 )}
-                
               </div>
             );
           })}
@@ -238,11 +253,23 @@ function Rockets(props) {
         contentLabel="Modal"
         overlayClassName="modal-overlay"
         className="modal-content"
-        ariaHideApp={false}>
+        ariaHideApp={false}
+      >
         <h3>Add your reason for adding it to watchlist:</h3>
-        <input type="text" onChange={handleReasonChange} placeholder="Your Reason"></input>
-        <button onClick={() => addToWatchList(props.gameForDetailsId, reason)}> Accept </button>
-        <button onClick={closeModalEdit}>Cancel</button>
+        <input
+          type="text"
+          onChange={handleReasonChange}
+          placeholder="Your Reason"
+        ></input>
+        <button
+          className="add"
+          onClick={() => addToWatchList(props.gameForDetailsId, reason)}
+        >
+          Accept
+        </button>
+        <button className="del" onClick={closeModalEdit}>
+          Cancel
+        </button>
       </Modal>
 
       <Modal
@@ -251,10 +278,18 @@ function Rockets(props) {
         contentLabel="Modal"
         overlayClassName="modal-overlay"
         className="modal-content"
-        ariaHideApp={false} >
+        ariaHideApp={false}
+      >
         <h3>Do you want to remove this element?</h3>
-        <button onClick={() => deleteFromWatchList(props.gameForDetailsId)}> Accept </button>
-        <button onClick={closeDeleteModal}>Cancel</button>
+        <button
+          className="add"
+          onClick={() => deleteFromWatchList(props.gameForDetailsId)}
+        >
+          Accept
+        </button>
+        <button className="del" onClick={closeDeleteModal}>
+          Cancel
+        </button>
       </Modal>
     </>
   );

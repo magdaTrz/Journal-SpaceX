@@ -160,7 +160,9 @@ function WatchList(props) {
                 <button onClick={() => props.changePage("LunchCard")}>
                   Read more
                 </button>
-                <button onClick={() => openModal(rocket.id)}>Delete From WatchList</button>
+                <button className="del" onClick={() => openModal(rocket.id)}>
+                  Delete From WatchList
+                </button>
                 <Modal
                   isOpen={modalIsOpen}
                   onRequestClose={closeModal}
@@ -169,13 +171,23 @@ function WatchList(props) {
                   className="modal-content"
                 >
                   <h3>Do you want to remove this element?</h3>
-                  <button onClick={() => deleteFromFavourites(props.gameForDetailsId)}>
+                  <button
+                    className="add"
+                    onClick={() => deleteFromFavourites(props.gameForDetailsId)}
+                  >
                     Accept
                   </button>
-                  <button onClick={closeModal}>Cancel</button>
+                  <button className="del" onClick={closeModal}>
+                    Cancel
+                  </button>
                 </Modal>
-                
-                <button onClick={() =>openModalEdit(rocket.id)}>Add reason</button>
+
+                <button
+                  className="add"
+                  onClick={() => openModalEdit(rocket.id)}
+                >
+                  Add reason
+                </button>
                 <Modal
                   isOpen={modalIsOpenEdit}
                   onRequestClose={closeModalEdit}
@@ -185,10 +197,15 @@ function WatchList(props) {
                 >
                   <h3>Edit your Note:</h3>
                   <input type="text" onChange={handleReasonChange}></input>
-                  <button onClick={() => addReason(props.gameForDetailsId, reason)}> 
-                  Accept
+                  <button
+                    className="add"
+                    onClick={() => addReason(props.gameForDetailsId, reason)}
+                  >
+                    Accept
                   </button>
-                  <button onClick={closeModalEdit}>Cancel</button>
+                  <button className="del" onClick={closeModalEdit}>
+                    Cancel
+                  </button>
                 </Modal>
               </div>
             );
@@ -200,10 +217,18 @@ function WatchList(props) {
         contentLabel="Modal"
         overlayClassName="modal-overlay"
         className="modal-content"
-        ariaHideApp={false} >
+        ariaHideApp={false}
+      >
         <h3>Do you want to remove this element?</h3>
-        <button onClick={() => deleteFromFavourites(props.gameForDetailsId)}> Accept </button>
-        <button onClick={closeModal}>Cancel</button>
+        <button
+          className="add"
+          onClick={() => deleteFromFavourites(props.gameForDetailsId)}
+        >
+          Accept
+        </button>
+        <button className="del" onClick={closeModal}>
+          Cancel
+        </button>
       </Modal>
 
       <Modal
@@ -211,12 +236,20 @@ function WatchList(props) {
         onRequestClose={closeModalEdit}
         contentLabel="Modal"
         overlayClassName="modal-overlay"
-        className="modal-content" 
-        ariaHideApp={false}>
+        className="modal-content"
+        ariaHideApp={false}
+      >
         <h3>Edit your Note:</h3>
         <input type="text" onChange={handleReasonChange}></input>
-        <button onClick={() => addReason(props.gameForDetailsId, reason)}> Accept </button>
-        <button onClick={closeModalEdit}>Cancel</button>
+        <button
+          className="add"
+          onClick={() => addReason(props.gameForDetailsId, reason)}
+        >
+          Accept
+        </button>
+        <button className="del" onClick={closeModalEdit}>
+          Cancel
+        </button>
       </Modal>
     </>
   );

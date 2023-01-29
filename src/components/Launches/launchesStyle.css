@@ -90,6 +90,10 @@ p {
   color: white;
   font-family: "JetBrains Mono", monospace;
 }
+h3 {
+  color: white;
+  font-family: "JetBrains Mono", monospace;
+}
 
 img {
   border-radius: 6px;
