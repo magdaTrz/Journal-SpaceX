@@ -54,6 +54,7 @@ class App extends Component {
           <Rockets
             currentUser={this.state.currentUser}
             changePage={this.changePage}
+            gameForDetailsId={this.state.gameForDetailsId}
             setGameIdForDetailsId={this.setGameIdForDetailsId}
           ></Rockets>
         </>

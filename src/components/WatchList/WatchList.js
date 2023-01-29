@@ -160,39 +160,36 @@ function WatchList(props) {
                   Read more
                 </button>
                 <button onClick={() => openModal(rocket.id)}>Delete From WatchList</button>
-                <Modal
-                  isOpen={modalIsOpen}
-                  onRequestClose={closeModal}
-                  contentLabel="Modal"
-                  overlayClassName="modal-overlay"
-                  className="modal-content"
-                >
-                  <h3>Do you want to remove this element?</h3>
-                  <button onClick={() => deleteFromFavourites(props.gameForDetailsId)}>
-                    Accept
-                  </button>
-                  <button onClick={closeModal}>Cancel</button>
-                </Modal>
                 
                 <button onClick={() =>openModalEdit(rocket.id)}>Add reason</button>
-                <Modal
-                  isOpen={modalIsOpenEdit}
-                  onRequestClose={closeModalEdit}
-                  contentLabel="Modal"
-                  overlayClassName="modal-overlay"
-                  className="modal-content"
-                >
-                  <h3>Edit your Note:</h3>
-                  <input type="text" onChange={handleReasonChange}></input>
-                  <button onClick={() => addReason(props.gameForDetailsId, reason)}> 
-                  Accept
-                  </button>
-                  <button onClick={closeModalEdit}>Cancel</button>
-                </Modal>
               </div>
             );
           })}
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Modal"
+        overlayClassName="modal-overlay"
+        className="modal-content"
+        ariaHideApp={false} >
+        <h3>Do you want to remove this element?</h3>
+        <button onClick={() => deleteFromFavourites(props.gameForDetailsId)}> Accept </button>
+        <button onClick={closeModal}>Cancel</button>
+      </Modal>
+
+      <Modal
+        isOpen={modalIsOpenEdit}
+        onRequestClose={closeModalEdit}
+        contentLabel="Modal"
+        overlayClassName="modal-overlay"
+        className="modal-content" 
+        ariaHideApp={false}>
+        <h3>Edit your Note:</h3>
+        <input type="text" onChange={handleReasonChange}></input>
+        <button onClick={() => addReason(props.gameForDetailsId, reason)}> Accept </button>
+        <button onClick={closeModalEdit}>Cancel</button>
+      </Modal>
     </>
   );
 }
