@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 import rocketsStyle from "./rocketsStyle.css";
 
-
 function Rockets(props) {
   const [error, setError] = useState("");
   const [filter, setFilter] = useState("");
@@ -61,7 +60,7 @@ function Rockets(props) {
     if (person == null || person == "") {
       console.log("User cancelled the prompt.");
     } else {
-      let reason = [person]
+      let reason = [person];
       let id = rocketId;
       let title = rocketName;
       let img = flickr_images;
@@ -87,14 +86,13 @@ function Rockets(props) {
     }
   };
 
-  
-
   return (
     <>
-      <h1>Rockets</h1>
-      <div>
-        <p>Sort by:</p>
-        <p htmlFor="descending">
+      <h2>Rockets</h2>
+      <div className="info">
+        <div className="blank"> </div>
+        <h3>Sort by:</h3>
+        <label htmlFor="descending">
           descending
           <input
             type="radio"
@@ -103,8 +101,8 @@ function Rockets(props) {
             value={sort}
             onChange={(e) => sortRockets("descending")}
           />
-        </p>
-        <p htmlFor="ascending">
+        </label>
+        <label htmlFor="ascending">
           ascending
           <input
             type="radio"
@@ -112,23 +110,22 @@ function Rockets(props) {
             value={sort}
             onChange={(e) => sortRockets("ascending")}
           />
-        </p>
-      </div>
+        </label>
 
-      <div>
-        <p htmlFor="username">Filter by name</p>
-        <input
-          type="username"
-          name="username"
-          id="username"
-          autoComplete="off"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        />
+        <div className="filtr">
+          <input
+            type="username"
+            name="username"
+            id="username"
+            placeholder="Filter by name"
+            autoComplete="off"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          />
+        </div>
+        <button onClick={() => filterRockets(filter)}>Filter</button>
+        <button onClick={() => fetchRockets()}>Pokaz wszystkie</button>
       </div>
-      <button onClick={() => filterRockets(filter)}>Filter</button>
-      <button onClick={() => fetchRockets()}>Pokaz wszystkie</button>
-      <div></div>
 
       <div className="rocket-section">
         {rockets &&
@@ -140,12 +137,16 @@ function Rockets(props) {
                 Cost per launch: {rocket.cost_per_launch} <br />
                 First flight: {rocket.first_flight} <br />
                 Company: {rocket.company} <br />
-                <button onClick={() => {
-                  props.setGameIdForDetailsId(rocket.id);
-                  props.changePage("RocketsCard") }}>
+                <button
+                  onClick={() => {
+                    props.setGameIdForDetailsId(rocket.id);
+                    props.changePage("RocketsCard");
+                  }}
+                >
                   Read more
                 </button>
                 <button
+                  className="add"
                   onClick={() =>
                     addToWatchList(rocket.id, rocket.name, rocket.flickr_images)
                   }
