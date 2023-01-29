@@ -1,10 +1,27 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import Modal from "react-modal";
+import watchListStyle from "./watchListStyle.css";
 
 function WatchList(props) {
   const [rockets, setRockets] = useState(null);
   const [error, setError] = useState("");
   const [inFavourites, setInFavourites] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpenEdit, setIsOpenEdit] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModalEdit() {
+    setIsOpenEdit(true);
+  }
+  function closeModalEdit() {
+    setIsOpenEdit(false);
+  }
 
   const settingUpFavourites = () => {
     console.log("SETGAMES DEFAULT FAVOURITES");
@@ -32,7 +49,7 @@ function WatchList(props) {
     console.log("Deleting from favourites");
     let id = rocketId;
     console.log("Użytkownik: " + props.currentUser.id);
-    let newGame = { id: id, userId: props.currentUser.id };
+    Modal.setAppElement("#watchlist-root");
 
     fetch("http://localhost:8000/rockets/" + id, {
       method: "DELETE",
@@ -47,7 +64,6 @@ function WatchList(props) {
   };
 
   const changeReason = (rocketId, rocketName, flickr_images, oldReason) => {
-    console.log("Adding to watchlist");
     let reason = prompt(
       "What's your new reason for interest in this rocket:",
       oldReason
@@ -84,9 +100,7 @@ function WatchList(props) {
     <>
       <h1>Your watchlist</h1>
 
-      <div></div>
-
-      <div>
+      <div id="watchlist-root">
         {rockets &&
           rockets.map((rocket) => {
             return (
@@ -97,9 +111,20 @@ function WatchList(props) {
                 <button onClick={() => props.changePage("LunchCard")}>
                   Read more
                 </button>
-                <button onClick={() => deleteFromFavourites(rocket.id)}>
-                  Delete From WatchList
-                </button>
+                <button onClick={openModal}>Delete From WatchList</button>
+                <Modal
+                  isOpen={modalIsOpen}
+                  onRequestClose={closeModal}
+                  contentLabel="Modal"
+                  overlayClassName="modal-overlay"
+                  className="modal-content"
+                >
+                  <h3>Do you want to remove this element?</h3>
+                  <button onClick={() => deleteFromFavourites(rocket.id)}>
+                    Accept
+                  </button>
+                  <button onClick={closeModal}>Cancel</button>
+                </Modal>
                 <button
                   onClick={() =>
                     changeReason(
@@ -112,6 +137,19 @@ function WatchList(props) {
                 >
                   Change reason
                 </button>
+                <button onClick={openModalEdit}>Edit</button>
+                <Modal
+                  isOpen={modalIsOpenEdit}
+                  onRequestClose={closeModalEdit}
+                  contentLabel="Modal"
+                  overlayClassName="modal-overlay"
+                  className="modal-content"
+                >
+                  <h3>Edit your Note:</h3>
+                  <input type="text" placeholder={rocket.reason}></input>
+                  <button>Accept</button>
+                  <button onClick={closeModalEdit}>Cancel</button>
+                </Modal>
               </div>
             );
           })}
