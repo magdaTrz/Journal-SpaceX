@@ -58,11 +58,10 @@ function Rockets(props) {
         method: "GET"
       });
       const data = await response.json();
-      if (data) {
         let filteredRockets = data;
         filteredRockets = [...filteredRockets].filter((rocket) => rocket.userId == props.currentUser.id);
         setWatchlist(filteredRockets);
-      }
+        return filteredRockets
     } catch (error) {
       console.error(error);
     }
@@ -213,7 +212,10 @@ function Rockets(props) {
                 <p>Cost per launch: {rocket.cost_per_launch} </p>
                 <p>First flight: {rocket.first_flight} </p>
                 <p>Company: {rocket.company} </p>
-                <button
+                
+                {watchlist && (
+                  <div>
+                    <button
                   onClick={() => {
                     props.setGameIdForDetailsId(rocket.id);
                     props.changePage("RocketsCard");
@@ -221,8 +223,10 @@ function Rockets(props) {
                 >
                   Read more
                 </button>
-                {!isWatchlist(rocket.id) && <button onClick={ () => openModalEdit(rocket.id)}>Add to WatchList</button>}
-                {isWatchlist(rocket.id) && <button onClick={ () => openDeleteModal(rocket.id)}>Delete from WatchList</button>}
+                  {!isWatchlist(rocket.id) && <button onClick={ () => openModalEdit(rocket.id)}>Add to WatchList</button>}
+                  {isWatchlist(rocket.id) && <button onClick={ () => openDeleteModal(rocket.id)}>Delete from WatchList</button>}
+                  </div>
+                )}
                 
               </div>
             );
