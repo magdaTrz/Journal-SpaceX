@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Modal from "react-modal";
 
 import rocketsStyle from "./rocketsStyle.css";
+import { waitFor } from "@testing-library/react";
 
 function Rockets(props) {
   const [error, setError] = useState("");
@@ -14,6 +15,7 @@ function Rockets(props) {
   const [modalIsOpenEdit, setIsOpenEdit] = useState(false);
   const [reason, setReason] = React.useState("");
   const [watchlist, setWatchlist] = useState(null);
+  let isWatchlistFull = false;
 
   function openDeleteModal(id) {
     props.setGameIdForDetailsId(id);
@@ -47,6 +49,27 @@ function Rockets(props) {
   }
   if (rockets === null) {
     fetchRockets();
+  }
+
+  async function getWatchlist() {
+    console.log("SETROCKETS DEFAULT FAVOURITES");
+    try {
+      const response = await fetch("http://localhost:8000/rockets/", {
+        method: "GET"
+      });
+      const data = await response.json();
+      if (data) {
+        let filteredRockets = data;
+        filteredRockets = [...filteredRockets].filter((rocket) => rocket.userId == props.currentUser.id);
+        setWatchlist(filteredRockets);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if(watchlist === null) {
+    getWatchlist()
   }
 
   const sortRockets = (sortingType) => {
@@ -131,31 +154,10 @@ function Rockets(props) {
       });
   };
 
-  const getWatchlist = () => {
-    console.log("SETROCKETS DEFAULT FAVOURITES");
-    fetch("http://localhost:8000/rockets/", {
-      method: "GET",
-    })
-      .then((res) => res.text())
-      .then((ourData) => {
-        if (ourData) {
-          ourData = JSON.parse(ourData);
-          let filteredRockets = ourData;
-          filteredRockets = [...filteredRockets].filter(
-            (rocket) => rocket.userId == props.currentUser.id
-          );
-          setWatchlist(filteredRockets);
-        }
-      });
-  };
-
-  if(watchlist === null) {
-    getWatchlist()
-  }
   const isWatchlist = (rocketId) => {
-    let rocket1 = watchlist.find((rocket) => rocket.id === rocketId);
-    console.log(rocket1)
-    return rocket1;
+      let rocket1 = watchlist.find((rocket) => rocket.id === rocketId);
+      console.log(rocket1)
+      return rocket1;
   };
 
 
