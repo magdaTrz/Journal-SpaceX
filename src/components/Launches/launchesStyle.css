@@ -91,6 +91,9 @@ p {
   font-family: "JetBrains Mono", monospace;
 }
 
+img {
+  border-radius: 6px;
+}
 html {
   background: #1a1d27;
 }
@@ -109,4 +112,11 @@ html {
 .user {
   text-align: center;
   color: aliceblue;
+}
+
+.add {
+  color: green;
+}
+.del {
+  color: red;
 }
