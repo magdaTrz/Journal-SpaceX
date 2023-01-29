@@ -60,7 +60,6 @@ function Rockets(props) {
     if (person == null || person == "") {
       console.log("User cancelled the prompt.");
     } else {
-      let reason = [person]
       let id = rocketId;
       let title = rocketName;
       let img = flickr_images;
@@ -71,7 +70,7 @@ function Rockets(props) {
         userId: props.currentUser.id,
         name: title,
         flickr_images: img,
-        reason: reason,
+        reason: person,
       };
 
       fetch("http://localhost:8000/rockets", {
