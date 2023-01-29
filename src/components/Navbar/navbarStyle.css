@@ -1,6 +1,17 @@
 nav {
   border-radius: 6px;
 }
-nav > .active > button {
-  background-color: floralwhite;
+nav button {
+  margin-left: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-weight: 800;
+}
+
+nav h1 {
+  padding-bottom: 30px;
+}
+.navbar-items {
+  width: fit-content;
+  margin: auto;
 }
