@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import rocketsStyle from "./rocketsStyle.css";
 
+
 function Rockets(props) {
   const [error, setError] = useState("");
   const [filter, setFilter] = useState("");
@@ -85,6 +86,8 @@ function Rockets(props) {
     }
   };
 
+  
+
   return (
     <>
       <h2>Rockets</h2>
@@ -136,7 +139,9 @@ function Rockets(props) {
                 Cost per launch: {rocket.cost_per_launch} <br />
                 First flight: {rocket.first_flight} <br />
                 Company: {rocket.company} <br />
-                <button onClick={() => props.changePage("LunchCard")}>
+                <button onClick={() => {
+                  props.setGameIdForDetailsId(rocket.id);
+                  props.changePage("RocketsCard") }}>
                   Read more
                 </button>
                 <button

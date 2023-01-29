@@ -9,25 +9,38 @@ function Launches(props) {
   const [launches, setLaunches] = useState(null);
   const [inFavourites, setInFavourites] = useState(false);
 
-  let rockets = [
-    { id: "5e9d0d95eda69973a809d1ec", name: "Falcon 9" },
-    { id: "5e9d0d95eda69974db09d1ed", name: "Falcon Heavy" },
-    { id: "5e9d0d96eda699382d09d1ee", name: "Starship" },
-    { id: "5e9d0d95eda69955f709d1eb", name: "Falcon 1" },
-  ];
+
 
   async function fetchLaunches() {
     try {
       const response = await fetch("https://api.spacexdata.com/v5/launches");
       const data = await response.json();
-      console.log(data);
-      setLaunches(data);
-      return data;
+      let launches2 = []
+      if(props.gameForDetailsId == null) {
+        console.log(data);
+        setLaunches(data);
+      } else {
+        for(let j=0;j<data.length;j++)
+          {
+            if(props.gameForDetailsId==data[j]["rocket"])
+            {
+              console.log("Dodawane detali: ",data[j]);
+              
+              launches2.push(data[j])
+              console.log(launches2);
+            }
+          }
+          console.log(launches2);
+          setLaunches(launches2);
+          console.log(launches)
+          props.setGameIdForDetailsId(null)
+      }
     } catch (error) {
       console.error(error);
     }
   }
   if (launches === null) {
+    console.log(launches)
     fetchLaunches();
   }
 
@@ -79,7 +92,7 @@ function Launches(props) {
         reason: person,
       };
 
-      fetch("http://localhost:8000/launches", {
+      fetch("http://localhost:8000/rockets", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(newLaunches),
@@ -146,7 +159,11 @@ function Launches(props) {
                 </button>
                 <button
                   onClick={() =>
-                    addToWatchList(launch.id, launch.name, launch.flickr_images)
+                    addToWatchList(
+                      launch.id,
+                      launch.name,
+                      launch.links.patch.small
+                    )
                   }
                 >
                   Add to WatchList
