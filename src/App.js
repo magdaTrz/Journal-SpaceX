@@ -70,6 +70,7 @@ class App extends Component {
             changePage={this.changePage}
             gameForDetailsId={this.state.gameForDetailsId}
             setGameIdForDetailsId={this.setGameIdForDetailsId}
+            setRocketIdForLaunches = {this.setRocketIdForLaunches}
           ></RocketsCard>
         </>
       );
@@ -84,6 +85,8 @@ class App extends Component {
             changePage={this.changePage}
             gameForDetailsId={this.state.gameForDetailsId}
             setGameIdForDetailsId={this.setGameIdForDetailsId}
+            setRocketIdForLaunches = {this.setRocketIdForLaunches}
+            rocketIdForLaunches = {this.state.rocketIdForLaunches}
           ></Launches>
         </>
       );
@@ -96,6 +99,7 @@ class App extends Component {
           <LaunchesCard
             currentUser={this.state.currentUser}
             changePage={this.changePage}
+            gameForDetailsId={this.state.gameForDetailsId}
             setGameIdForDetailsId={this.setGameIdForDetailsId}
           ></LaunchesCard>
         </>
@@ -111,6 +115,7 @@ class App extends Component {
             changePage={this.changePage}
             gameForDetailsId={this.state.gameForDetailsId}
             setGameIdForDetailsId={this.setGameIdForDetailsId}
+            setRocketIdForLaunches = {this.setRocketIdForLaunches}
           ></WatchList>
         </>
       );
@@ -122,6 +127,9 @@ class App extends Component {
   setGameIdForDetailsId = (gameId) => {
     this.setState({ gameForDetailsId: gameId });
   };
+  setRocketIdForLaunches = (rocketId) => {
+    this.setState({ rocketIdForLaunches: rocketId });
+  }
   addedNewUser = () => {
     this.setState({ addedNewUser: true });
   };
