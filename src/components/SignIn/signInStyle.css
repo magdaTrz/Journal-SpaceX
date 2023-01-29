@@ -8,6 +8,7 @@
   padding: 1% 5%;
   align-items: center;
   border-radius: 6px;
+  color: white;
   margin: auto;
 }
 .signIn-div {
@@ -26,7 +27,7 @@
   color: rgb(145, 36, 36);
 }
 .acc {
-  color: gray;
+  color: lightgray;
   padding: 0;
   margin: 0;
   width: max-content;

@@ -74,6 +74,7 @@ button:active {
 
 h1 {
   text-align: center;
+  color: lightgray;
   font-size: 70px;
 }
 
@@ -82,6 +83,7 @@ body {
   padding-right: 10%;
   padding-top: 5%;
   padding-bottom: 5%;
+  color: lightgray;
 }
 
 p {
@@ -90,7 +92,7 @@ p {
 }
 
 html {
-  background: #090a0f 100%;
+  background: #1a1d27;
 }
 
 .rocket-section1 {

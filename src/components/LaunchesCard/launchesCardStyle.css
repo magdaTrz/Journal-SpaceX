@@ -1,13 +1,10 @@
-.launch-card
-{
-    color: aliceblue;
-    align-items: center;
+.launch-card {
+  color: aliceblue;
+  align-items: center;
 }
-.launch-info
-{
-    color: aliceblue;
+.launch-info {
+  color: aliceblue;
 }
 .rocket-section1 {
-    text-align: center;
-   }
- 
+  text-align: center;
+}
