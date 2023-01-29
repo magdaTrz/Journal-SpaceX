@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
 .pass {
   text-align: center;
   padding: 10px;
@@ -6,29 +8,37 @@
   font-weight: 30;
   font-size: 20px;
 }
-button {
-  display: inline;
-  background: none;
-  padding: 10px;
-  border: 2px solid #000;
-  border-radius: 5px;
-  color: #d8dbe6;
-  text-transform: uppercase;
-  min-width: 200px;
-  margin: 10px;
-  left: 720px;
-}
 
-h1 {
-  text-align: center;
-  font-family: "montserrat", sans-serif;
-  font-weight: 300;
+.typewriter h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
   font-size: 50px;
-  background: -webkit-linear-gradient(#fff, #38495a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #fff;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid rgb(78, 98, 165); /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
 }
-html {
 
-    background: #090a0f 100%;
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
   }
+  to {
+    width: 50%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgb(78, 98, 165);
+  }
+}

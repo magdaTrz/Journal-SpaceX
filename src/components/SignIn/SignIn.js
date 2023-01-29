@@ -57,45 +57,44 @@ function SignIn(props) {
   };
 
   return (
-    <div>
-      <h1>Space X</h1>
-   
-      <div className="pass">
-          <p htmlFor="username"> username </p>
-          <input
-            type="username"
-            name="username"
-            id="username"
-            autoComplete="off"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className={styles.Button}
-          />
-        </div>
-
-        <div className="pass">
-          <p htmlFor="password"> Password </p>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            autoComplete="off"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={styles.Button}
-          />
-        </div>
-        {users && (
-          <button className={styles.Button} onClick={submitForm}>
-            Sign In
-          </button>
-        )}
-        <p className="hiddenError"> {error} </p>
-        <button onClick={() => props.changePage("SignUp")}>
-          Go to the Registration page
-        </button>
+    <div className="style.signIn">
+      <div className="typewriter">
+        <h1>Journal Space-X</h1>
       </div>
-    
+      <div className="pass">
+        <p htmlFor="username"> username </p>
+        <input
+          type="username"
+          name="username"
+          id="username"
+          autoComplete="off"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className={styles.Button}
+        />
+      </div>
+      <div className="pass">
+        <p htmlFor="password"> Password </p>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          autoComplete="off"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className={styles.Button}
+        />
+      </div>
+      {users && (
+        <button className={styles.Button} onClick={submitForm}>
+          Sign In
+        </button>
+      )}
+      <p className="hiddenError"> {error} </p>
+      <button onClick={() => props.changePage("SignUp")}>
+        Go to the Registration page
+      </button>
+    </div>
   );
 }
 

@@ -79,8 +79,10 @@ function SignUp(props) {
 
   return (
     <div>
-      <h1>Register page</h1>
-  
+      <div className="typewriter">
+        <h1>Journal Space-X</h1>
+      </div>
+
       <div>
         <div className="pass">
           <p htmlFor="username">username</p>

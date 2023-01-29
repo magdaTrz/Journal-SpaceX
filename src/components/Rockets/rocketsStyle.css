@@ -14,12 +14,3 @@
   text-align: center;
   color: aliceblue;
 }
-h2 {
-  text-align: center;
-  font-family: "montserrat", sans-serif;
-  font-weight: 200;
-  font-size: 30px;
-  background: -webkit-linear-gradient(#fff, #38495a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
