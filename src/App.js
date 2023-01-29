@@ -108,6 +108,7 @@ class App extends Component {
           <WatchList
             currentUser={this.state.currentUser}
             changePage={this.changePage}
+            gameForDetailsId={this.state.gameForDetailsId}
             setGameIdForDetailsId={this.setGameIdForDetailsId}
           ></WatchList>
         </>
