@@ -9,38 +9,34 @@ function Launches(props) {
   const [launches, setLaunches] = useState(null);
   const [inFavourites, setInFavourites] = useState(false);
 
-
-
   async function fetchLaunches() {
     try {
       const response = await fetch("https://api.spacexdata.com/v5/launches");
       const data = await response.json();
-      let launches2 = []
-      if(props.gameForDetailsId == null) {
+      let launches2 = [];
+      if (props.gameForDetailsId == null) {
         console.log(data);
         setLaunches(data);
       } else {
-        for(let j=0;j<data.length;j++)
-          {
-            if(props.gameForDetailsId==data[j]["rocket"])
-            {
-              console.log("Dodawane detali: ",data[j]);
-              
-              launches2.push(data[j])
-              console.log(launches2);
-            }
+        for (let j = 0; j < data.length; j++) {
+          if (props.gameForDetailsId == data[j]["rocket"]) {
+            console.log("Dodawane detali: ", data[j]);
+
+            launches2.push(data[j]);
+            console.log(launches2);
           }
-          console.log(launches2);
-          setLaunches(launches2);
-          console.log(launches)
-          props.setGameIdForDetailsId(null)
+        }
+        console.log(launches2);
+        setLaunches(launches2);
+        console.log(launches);
+        props.setGameIdForDetailsId(null);
       }
     } catch (error) {
       console.error(error);
     }
   }
   if (launches === null) {
-    console.log(launches)
+    console.log(launches);
     fetchLaunches();
   }
 
@@ -106,10 +102,11 @@ function Launches(props) {
 
   return (
     <>
-      <h1 className="heading">Launches</h1>
+      <h2>Launches</h2>
       <div className="info">
-        <p>Sort by:</p>
-        <p htmlFor="descending">
+        <div className="blank"> </div>
+        <h3>Sort by:</h3>
+        <label htmlFor="descending">
           descending
           <input
             type="radio"
@@ -118,8 +115,8 @@ function Launches(props) {
             value={sort}
             onChange={(e) => sortLaunches("descending")}
           />
-        </p>
-        <p htmlFor="ascending">
+        </label>
+        <label htmlFor="ascending">
           ascending
           <input
             type="radio"
@@ -127,37 +124,37 @@ function Launches(props) {
             value={sort}
             onChange={(e) => sortLaunches("ascending")}
           />
-        </p>
+        </label>
+
+        <div className="filtr">
+          <input
+            type="username"
+            name="username"
+            id="username"
+            placeholder="Filter by name"
+            autoComplete="off"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          />
+        </div>
+        <button onClick={() => filterLaunches(filter)}>Filter</button>
+        <button onClick={() => fetchLaunches()}>Show all</button>
       </div>
 
-      <div className="user">
-        <p htmlFor="username">Filter by name</p>
-        <input
-          type="username"
-          name="username"
-          id="username"
-          autoComplete="off"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        />
-      </div>
-      <button onClick={() => filterLaunches(filter)}>Filter</button>
-      <button onClick={() => fetchLaunches()}>Pokaz wszystkie</button>
-      <div></div>
-
-      <div className="rocket-section1">
+      <div className="rocket-section">
         {launches &&
           launches.map((launch) => {
             return (
-              <div key={launch.id} className="launch-card">
+              <div key={launch.id} className="rocket-card">
                 <img src={launch.links.patch.small}></img>
-                <h1>{launch.name}</h1>
-                Details: {launch.details} <br />
-                Is it upcoming: {launch.upcoming} <br />
+                <h2>{launch.name}</h2>
+                <p>Details: {launch.details}</p>
+                <p>Is it upcoming: {launch.upcoming}</p>
                 <button onClick={() => props.changePage("LunchCard")}>
                   Read more
                 </button>
                 <button
+                  className="add"
                   onClick={() =>
                     addToWatchList(
                       launch.id,

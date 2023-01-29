@@ -85,7 +85,7 @@ function SignUp(props) {
       <div className="signIn">
         <h2>Sign Up</h2>
         <div className="pass">
-          <p htmlFor="username">username</p>
+          <p htmlFor="username">Username</p>
           <input
             type="username"
             name="username"

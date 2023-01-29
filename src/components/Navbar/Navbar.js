@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styles from"./navbarStyle.css";
+import styles from "./navbarStyle.css";
 
 function Navbar(props) {
   const [active, setActive] = useState("SignIn");
@@ -12,8 +12,9 @@ function Navbar(props) {
 
   return (
     <nav>
-      <h1>Space X</h1>
-
+      <div className="typewriter">
+        <h1>Journal Space-X</h1>
+      </div>
 
       <button name="Launches" onClick={() => props.changePage("Launches")}>
         Launches

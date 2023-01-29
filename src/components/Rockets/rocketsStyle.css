@@ -1,16 +1,82 @@
 .rocket-section {
   align-items: center;
-  color: aliceblue;
 }
 
 .rocket-card {
-  margin: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
   text-align: center;
+  background-color: #d6d6e7;
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: calc(var(--curve) * 1px);
+  overflow: hidden;
+  text-decoration: none;
 }
 .rocket-card img {
-  width: 70%;
+  width: 60%;
+  height: auto;
+  border-radius: 6px;
 }
+.rocket-card h2 {
+  font-family: "Space Grotesk", sans-serif;
+}
+.rocket-card button {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.rocket-card .add {
+  color: green;
+}
+
+.rocket-card p {
+  font-family: "Poppins";
+}
+
 .info {
-  text-align: center;
-  color: aliceblue;
+  background-color: rgba(44, 43, 59, 0.247);
+  padding-top: 10px;
+  padding-bottom: 20px;
+  font-family: "JetBrains Mono", monospace;
+  width: 50%;
+  min-width: 500px;
+  margin: auto;
+  border-radius: 6px;
+  box-shadow: #d6d6e7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+}
+.info input[type="radio"] {
+  background-color: #fcfcfd;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #36395a;
+  font-family: "JetBrains Mono", monospace;
+  height: 24px;
+  justify-content: center;
+  line-height: 0;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+}
+.info h3:first-child {
+  font-family: "Space Grotesk", sans-serif;
+  text-align: start;
+  color: lightgray;
+}
+.info label {
+  padding: 20px;
+}
+
+.filtr input {
+  margin: 5px;
+  height: 48px;
+  font-size: large;
+}
+.info button {
+  margin-left: 20px;
 }
