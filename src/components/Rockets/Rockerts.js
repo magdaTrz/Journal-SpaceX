@@ -220,7 +220,7 @@ function Rockets(props) {
                   Read more
                 </button>
                 {!isWatchlist(rocket.id) && <button onClick={ () => openModalEdit(rocket.id)}>Add to WatchList</button>}
-                {isWatchlist(rocket.id) && <button onClick={ () => openDeleteModal(rocket.id)}>Delete from favourites</button>}
+                {isWatchlist(rocket.id) && <button onClick={ () => openDeleteModal(rocket.id)}>Delete from WatchList</button>}
                 
               </div>
             );
