@@ -133,10 +133,10 @@ function Rockets(props) {
             return (
               <div key={rocket.id} className="rocket-card">
                 <img src={rocket.flickr_images}></img>
-                <h1>{rocket.name}</h1>
-                Cost per launch: {rocket.cost_per_launch} <br />
-                First flight: {rocket.first_flight} <br />
-                Company: {rocket.company} <br />
+                <h2>{rocket.name}</h2>
+                <p>Cost per launch: {rocket.cost_per_launch} </p>
+                <p>First flight: {rocket.first_flight} </p>
+                <p>Company: {rocket.company} </p>
                 <button
                   onClick={() => {
                     props.setGameIdForDetailsId(rocket.id);

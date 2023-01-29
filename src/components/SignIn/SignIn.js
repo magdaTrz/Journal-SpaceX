@@ -58,6 +58,9 @@ function SignIn(props) {
 
   return (
     <div className="signIn-div">
+      <div id="stars"></div>
+      <div id="stars2"></div>
+      <div id="stars3"></div>
       <div className="typewriter">
         <h1>Journal Space-X</h1>
       </div>
