@@ -4,7 +4,7 @@
   border-radius: 4px;
   border-width: 0;
   padding: 5%;
-  color: #36395a;
+  background-color: rgba(44, 43, 59, 0.247);
   cursor: pointer;
 }
 .details-card h2 {
@@ -16,6 +16,9 @@
 }
 .details-card p {
   font-family: "Poppins";
+}
+.details-card button {
+  margin-right: 20px;
 }
 a {
   text-decoration: none;

@@ -124,7 +124,7 @@ function Rockets(props) {
           />
         </div>
         <button onClick={() => filterRockets(filter)}>Filter</button>
-        <button onClick={() => fetchRockets()}>Pokaz wszystkie</button>
+        <button onClick={() => fetchRockets()}>Show all</button>
       </div>
 
       <div className="rocket-section">
