@@ -18,7 +18,7 @@ function Rockets(props) {
   let isWatchlistFull = false;
 
   function openDeleteModal(id) {
-    props.setGameIdForDetailsId(id);
+    props.setItemIdForDetailsId(id);
     setIsOpen(true);
   }
   function closeDeleteModal() {
@@ -26,7 +26,7 @@ function Rockets(props) {
   }
 
   function openModalEdit(id) {
-    props.setGameIdForDetailsId(id);
+    props.setItemIdForDetailsId(id);
     setIsOpenEdit(true);
   }
 
@@ -118,6 +118,7 @@ function Rockets(props) {
       userId: props.currentUser.id,
       name: title,
       flickr_images: img,
+      type: "rocket",
       reason: reasonForAdding,
     };
 
@@ -138,7 +139,6 @@ function Rockets(props) {
   const deleteFromWatchList = (rocketId) => {
     console.log("Deleting from favourites");
     let id = rocketId;
-    let rocket1 = rockets.find((rocket) => rocket.id == rocketId);
     console.log("Użytkownik: " + props.currentUser.id);
 
     fetch("http://localhost:8000/rockets/" + id, {
@@ -219,7 +219,7 @@ function Rockets(props) {
                   <div>
                     <button
                       onClick={() => {
-                        props.setGameIdForDetailsId(rocket.id);
+                        props.setItemIdForDetailsId(rocket.id);
                         props.changePage("RocketsCard");
                       }}
                     >
@@ -263,7 +263,7 @@ function Rockets(props) {
         ></input>
         <button
           className="add"
-          onClick={() => addToWatchList(props.gameForDetailsId, reason)}
+          onClick={() => addToWatchList(props.itemForDetailsId, reason)}
         >
           Accept
         </button>
@@ -283,7 +283,7 @@ function Rockets(props) {
         <h3>Do you want to remove this element?</h3>
         <button
           className="add"
-          onClick={() => deleteFromWatchList(props.gameForDetailsId)}
+          onClick={() => deleteFromWatchList(props.itemForDetailsId)}
         >
           Accept
         </button>

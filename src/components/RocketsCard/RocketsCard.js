@@ -12,7 +12,7 @@ function RocketsCard(props) {
   const [modalIsOpenEdit, setIsOpenEdit] = useState(false);
 
   function openDeleteModal(id) {
-    props.setGameIdForDetailsId(id);
+    props.setItemIdForDetailsId(id);
     setIsOpen(true);
   }
   function closeDeleteModal() {
@@ -20,7 +20,7 @@ function RocketsCard(props) {
   }
 
   function openModalEdit(id) {
-    props.setGameIdForDetailsId(id);
+    props.setItemIdForDetailsId(id);
     setIsOpenEdit(true);
   }
 
@@ -34,9 +34,9 @@ function RocketsCard(props) {
     try {
       const response = await fetch("https://api.spacexdata.com/v4/rockets");
       const data = await response.json();
-      console.log(props.gameForDetailsId);
+      console.log(props.itemForDetailsId);
       for (let j = 0; j < data.length; j++) {
-        if (props.gameForDetailsId == data[j]["id"]) {
+        if (props.itemForDetailsId == data[j]["id"]) {
           console.log("Dodawane detali: ", data[j]);
 
           setRocketDetails(data[j]);
@@ -89,6 +89,7 @@ function RocketsCard(props) {
       userId: props.currentUser.id,
       name: title,
       flickr_images: img,
+      type: "rocket",
       reason: reasonForAdding,
     };
 
@@ -202,7 +203,7 @@ function RocketsCard(props) {
         ></input>
         <button
           className="add"
-          onClick={() => addToWatchList(props.gameForDetailsId, reason)}
+          onClick={() => addToWatchList(props.itemForDetailsId, reason)}
         >
           Accept
         </button>
@@ -222,7 +223,7 @@ function RocketsCard(props) {
         <h3>Do you want to remove this element?</h3>
         <button
           className="add"
-          onClick={() => deleteFromWatchList(props.gameForDetailsId)}
+          onClick={() => deleteFromWatchList(props.itemForDetailsId)}
         >
           Accept
         </button>

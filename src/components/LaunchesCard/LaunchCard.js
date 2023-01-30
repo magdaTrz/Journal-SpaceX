@@ -13,7 +13,7 @@ function LaunchCard(props) {
   const [modalIsOpenEdit, setIsOpenEdit] = useState(false);
 
   function openDeleteModal(id) {
-    props.setGameIdForDetailsId(id);
+    props.setItemIdForDetailsId(id);
     setIsOpen(true);
   }
   function closeDeleteModal() {
@@ -21,7 +21,7 @@ function LaunchCard(props) {
   }
 
   function openModalEdit(id) {
-    props.setGameIdForDetailsId(id);
+    props.setItemIdForDetailsId(id);
     setIsOpenEdit(true);
   }
 
@@ -35,9 +35,9 @@ function LaunchCard(props) {
     try {
       const response = await fetch("https://api.spacexdata.com/v5/launches");
       const data = await response.json();
-      console.log(props.gameForDetailsId);
+      console.log(props.itemForDetailsId);
       for (let j = 0; j < data.length; j++) {
-        if (props.gameForDetailsId == data[j]["id"]) {
+        if (props.itemForDetailsId == data[j]["id"]) {
           console.log("Dodawane detali: ", data[j]);
 
           setLaunchDetails(data[j]);
@@ -108,6 +108,7 @@ function LaunchCard(props) {
       userId: props.currentUser.id,
       name: title,
       flickr_images: img,
+      type: "launch",
       reason: reasonForAdding,
     };
 
@@ -183,7 +184,7 @@ function LaunchCard(props) {
                 <div>
                   <button
                     onClick={() => {
-                      props.setGameIdForDetailsId(launchDetails.rocket);
+                      props.setItemIdForDetailsId(launchDetails.rocket);
                       props.changePage("RocketsCard");
                     }}
                   >
@@ -227,7 +228,7 @@ function LaunchCard(props) {
         ></input>
         <button
           className="add"
-          onClick={() => addToWatchList(props.gameForDetailsId, reason)}
+          onClick={() => addToWatchList(props.itemForDetailsId, reason)}
         >
           Accept
         </button>
@@ -247,7 +248,7 @@ function LaunchCard(props) {
         <h3>Do you want to remove this element?</h3>
         <button
           className="add"
-          onClick={() => deleteFromWatchList(props.gameForDetailsId)}
+          onClick={() => deleteFromWatchList(props.itemForDetailsId)}
         >
           Accept
         </button>

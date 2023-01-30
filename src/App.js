@@ -54,8 +54,8 @@ class App extends Component {
           <Rockets
             currentUser={this.state.currentUser}
             changePage={this.changePage}
-            gameForDetailsId={this.state.gameForDetailsId}
-            setGameIdForDetailsId={this.setGameIdForDetailsId}
+            itemForDetailsId={this.state.itemForDetailsId}
+            setItemIdForDetailsId={this.setItemIdForDetailsId}
           ></Rockets>
         </>
       );
@@ -68,8 +68,8 @@ class App extends Component {
           <RocketsCard
             currentUser={this.state.currentUser}
             changePage={this.changePage}
-            gameForDetailsId={this.state.gameForDetailsId}
-            setGameIdForDetailsId={this.setGameIdForDetailsId}
+            itemForDetailsId={this.state.itemForDetailsId}
+            setItemIdForDetailsId={this.setItemIdForDetailsId}
             setRocketIdForLaunches = {this.setRocketIdForLaunches}
           ></RocketsCard>
         </>
@@ -83,8 +83,8 @@ class App extends Component {
           <Launches
             currentUser={this.state.currentUser}
             changePage={this.changePage}
-            gameForDetailsId={this.state.gameForDetailsId}
-            setGameIdForDetailsId={this.setGameIdForDetailsId}
+            itemForDetailsId={this.state.itemForDetailsId}
+            setItemIdForDetailsId={this.setItemIdForDetailsId}
             setRocketIdForLaunches = {this.setRocketIdForLaunches}
             rocketIdForLaunches = {this.state.rocketIdForLaunches}
           ></Launches>
@@ -99,8 +99,8 @@ class App extends Component {
           <LaunchesCard
             currentUser={this.state.currentUser}
             changePage={this.changePage}
-            gameForDetailsId={this.state.gameForDetailsId}
-            setGameIdForDetailsId={this.setGameIdForDetailsId}
+            itemForDetailsId={this.state.itemForDetailsId}
+            setItemIdForDetailsId={this.setItemIdForDetailsId}
           ></LaunchesCard>
         </>
       );
@@ -113,8 +113,8 @@ class App extends Component {
           <WatchList
             currentUser={this.state.currentUser}
             changePage={this.changePage}
-            gameForDetailsId={this.state.gameForDetailsId}
-            setGameIdForDetailsId={this.setGameIdForDetailsId}
+            itemForDetailsId={this.state.itemForDetailsId}
+            setItemIdForDetailsId={this.setItemIdForDetailsId}
             setRocketIdForLaunches = {this.setRocketIdForLaunches}
           ></WatchList>
         </>
@@ -124,8 +124,8 @@ class App extends Component {
   changePage = (page) => {
     this.setState({ whichPage: page });
   };
-  setGameIdForDetailsId = (gameId) => {
-    this.setState({ gameForDetailsId: gameId });
+  setItemIdForDetailsId = (itemId) => {
+    this.setState({ itemForDetailsId: itemId });
   };
   setRocketIdForLaunches = (rocketId) => {
     this.setState({ rocketIdForLaunches: rocketId });

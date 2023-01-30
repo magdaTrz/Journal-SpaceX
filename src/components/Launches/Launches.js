@@ -15,7 +15,7 @@ function Launches(props) {
   const [modalIsOpenEdit, setIsOpenEdit] = useState(false);
 
   function openDeleteModal(id) {
-    props.setGameIdForDetailsId(id);
+    props.setItemIdForDetailsId(id);
     setIsOpen(true);
   }
   function closeDeleteModal() {
@@ -23,7 +23,7 @@ function Launches(props) {
   }
 
   function openModalEdit(id) {
-    props.setGameIdForDetailsId(id);
+    props.setItemIdForDetailsId(id);
     setIsOpenEdit(true);
   }
 
@@ -43,7 +43,7 @@ function Launches(props) {
         setLaunches(data);
       } else {
         for (let j = 0; j < data.length; j++) {
-          if (props.gameForDetailsId == data[j]["rocket"]) {
+          if (props.itemForDetailsId == data[j]["rocket"]) {
             console.log("Dodawane detali: ", data[j]);
 
             launches2.push(data[j]);
@@ -116,8 +116,6 @@ function Launches(props) {
   };
 
   const addToWatchList = (launchesId, newReason) => {
-    props.setGameIdForDetailsId(null);
-
     console.log("Adding to watchlist");
     let launch1 = launches.find((launch) => launch.id == launchesId);
     console.log(launch1);
@@ -133,6 +131,7 @@ function Launches(props) {
       userId: props.currentUser.id,
       name: title,
       flickr_images: img,
+      type: "launch",
       reason: reasonForAdding,
     };
 
@@ -144,6 +143,7 @@ function Launches(props) {
       console.log("Dodano rakietę do obserwowanych");
       setInFavourites(true);
       setError("Added a rocket to watchlist");
+      getWatchlist();
       fetchLaunches();
       closeModalEdit();
     });
@@ -151,7 +151,6 @@ function Launches(props) {
 
   const deleteFromWatchList = (launchId) => {
     console.log("Deleting from favourites");
-    props.setGameIdForDetailsId(null);
     let id = launchId;
     console.log("Użytkownik: " + props.currentUser.id);
 
@@ -231,7 +230,7 @@ function Launches(props) {
                     <div>
                       <button
                         onClick={() => {
-                          props.setGameIdForDetailsId(launch.id);
+                          props.setItemIdForDetailsId(launch.id);
                           props.changePage("LaunchesCard");
                         }}
                       >
@@ -277,8 +276,7 @@ function Launches(props) {
         <button
           className="add"
           onClick={() => {
-            addToWatchList(props.gameForDetailsId, reason);
-            props.setGameIdForDetailsId(null);
+            addToWatchList(props.itemForDetailsId, reason);
           }}
         >
           Accept
@@ -300,8 +298,7 @@ function Launches(props) {
         <button
           className="add"
           onClick={() => {
-            deleteFromWatchList(props.gameForDetailsId);
-            props.setGameIdForDetailsId(null);
+            deleteFromWatchList(props.itemForDetailsId);
           }}
         >
           Accept
